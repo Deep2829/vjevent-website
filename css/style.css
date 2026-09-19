@@ -51,17 +51,23 @@ img { max-width: 100%; display: block; }
   padding: 0 24px;
 }
 
-.section { padding: 96px 0; background: var(--paper); position: relative; z-index: 1; }
+/* Every section is sticky and stacks with an increasing z-index, so each
+   one pins in place and the next slides up over it as you scroll — the
+   same curtain-pull treatment as the hero, applied all the way down. */
+.section { padding: 96px 0; background: var(--paper); position: sticky; top: 0; }
 .section-alt { background: var(--paper-deep); }
 .section-dark { background: var(--ink); color: var(--paper); }
 
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  max-width: 1120px;
-  margin: 0 auto;
-  position: relative; z-index: 1; background: var(--paper);
+#about, #services, #pricing, #gallery, #testimonials, #contact {
+  border-radius: 40px 40px 0 0;
+  box-shadow: 0 -32px 56px rgba(27, 29, 23, 0.22);
 }
+#about { z-index: 1; }
+#services { z-index: 2; }
+#pricing { z-index: 3; }
+#gallery { z-index: 4; }
+#testimonials { z-index: 5; }
+#contact { z-index: 6; }
 
 .section-heading { max-width: 620px; margin-bottom: 56px; }
 .section-heading .section-sub { margin-top: 12px; }
@@ -239,12 +245,6 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 .hero-actions { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
 
 /* ===== About ===== */
-/* This is the section that slides up over the sticky hero — the rounded
-   top edge and shadow are what read as a curtain being pulled over it. */
-#about {
-  border-radius: 40px 40px 0 0;
-  box-shadow: 0 -32px 56px rgba(27, 29, 23, 0.22);
-}
 .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: start; }
 .about-photo { aspect-ratio: 4/5; border: 1px solid var(--border); }
 .pull-quote {
@@ -333,7 +333,7 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 .form-note { text-align: center; margin-top: 14px; font-size: 0.86rem; color: #cfa967; font-weight: 600; min-height: 1.2em; }
 
 /* ===== Footer ===== */
-.site-footer { background: var(--ink); color: #a9a798; padding: 40px 0; border-top: 1px solid var(--border-light); position: relative; z-index: 1; }
+.site-footer { background: var(--ink); color: #a9a798; padding: 40px 0; border-top: 1px solid var(--border-light); position: relative; z-index: 7; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
 .footer-inner .brand-name { color: var(--paper); }
 .footer-inner p { font-size: 0.85rem; }
@@ -433,7 +433,9 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
   .form-row { grid-template-columns: 1fr; }
   .section { padding: 68px 0; }
   .hero { min-height: 480px; }
-  #about { border-radius: 24px 24px 0 0; box-shadow: 0 -18px 36px rgba(27, 29, 23, 0.2); }
+  #about, #services, #pricing, #gallery, #testimonials, #contact {
+    border-radius: 24px 24px 0 0; box-shadow: 0 -18px 36px rgba(27, 29, 23, 0.2);
+  }
   .pricing-card { border-right: none; border-bottom: 1px solid var(--border); }
   .pricing-card:last-child { border-bottom: none; }
 }
