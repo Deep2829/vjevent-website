@@ -42,30 +42,33 @@
   </nav>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (full-screen video landing) ===== -->
 <section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline poster="video/hero-poster.jpg" aria-hidden="true">
+    <source src="video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
   <div class="sparkles" aria-hidden="true">
     <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
     <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
     <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
     <span class="sparkle"></span><span class="sparkle"></span><span class="sparkle"></span>
   </div>
-  <div class="container hero-split">
-    <div class="hero-frame">
-      <span class="seal seal-lg" aria-hidden="true"><span>V</span></span>
-      <p class="eyebrow">Event Design &amp; Decor Studio — Delhi</p>
-      <h1>Welcome to Vjevent</h1>
-      <p class="hero-quote">"Where every celebration begins as a quiet idea — and blooms into a memory that lasts."</p>
-      <p class="hero-sub">We design weddings, celebrations and corporate events through considered lighting, floral styling and a cohesive design language built around your story.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Request a Consultation</a>
-        <a href="#services" class="btn btn-text">View Services <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </div>
-    <div class="hero-photo photo">
-      <img src="images/hero.jpg" alt="Long banquet table styled beneath a hanging chandelier" loading="eager">
+  <div class="container hero-content">
+    <span class="seal seal-lg" aria-hidden="true"><span>V</span></span>
+    <p class="eyebrow">Event Design &amp; Decor Studio — Delhi</p>
+    <h1>Welcome to Vjevent</h1>
+    <p class="hero-quote">"Where every celebration begins as a quiet idea — and blooms into a memory that lasts."</p>
+    <p class="hero-sub">We design weddings, celebrations and corporate events through considered lighting, floral styling and a cohesive design language built around your story.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+      <a href="#services" class="btn btn-text">View Services <span aria-hidden="true">&rarr;</span></a>
     </div>
   </div>
+  <a href="#about" class="scroll-hint" aria-label="Scroll down for more">
+    <span>Scroll</span>
+    <span class="scroll-arrow" aria-hidden="true">&darr;</span>
+  </a>
 </section>
 
 <!-- ===== ABOUT ===== -->

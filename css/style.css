@@ -156,12 +156,50 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 .photo { overflow: hidden; background: var(--paper-deep); }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.88) sepia(0.08); }
 
-/* ===== Hero ===== */
-.hero { padding: 64px 0 0; position: relative; overflow: hidden; }
-.hero-split { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: stretch; gap: 0; position: relative; z-index: 1; }
+/* ===== Hero (full-screen video landing) ===== */
+.hero {
+  position: relative; overflow: hidden; padding: 0;
+  height: 100vh; min-height: 560px; max-height: 900px;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(27, 29, 23, 0.6) 0%, rgba(27, 29, 23, 0.72) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 640px; margin: 0 auto;
+}
 .hero-quote {
   font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem;
-  color: var(--moss); margin-bottom: 20px; max-width: 460px;
+  color: #cfa967; margin: 0 auto 20px; max-width: 460px;
+}
+.hero-content .eyebrow { color: var(--brass); }
+.hero-content h1 { color: var(--paper); }
+.hero-content .hero-sub { color: #d8d1c6; margin-left: auto; margin-right: auto; }
+.hero-content .hero-actions { justify-content: center; }
+.hero-content .btn-primary { background: var(--brass); border-color: var(--brass); color: var(--ink); }
+.hero-content .btn-primary:hover { background: #cfa967; border-color: #cfa967; }
+.hero-content .btn-text { color: var(--paper); }
+.hero-content .btn-text:hover { color: var(--brass); }
+
+.scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--paper); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85;
+}
+.scroll-hint:hover { color: var(--brass); }
+.scroll-arrow { animation: scroll-bounce 1.8s ease-in-out infinite; }
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow { animation: none; }
 }
 
 /* Soft, ambient sparkle particles — decorative only */
@@ -193,17 +231,10 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 @media (prefers-reduced-motion: reduce) {
   .sparkle { animation: none; opacity: 0.3; }
 }
-.hero-frame {
-  border: 1px solid var(--border); border-right: none;
-  padding: clamp(40px, 6vw, 72px) clamp(24px, 6vw, 56px);
-  display: flex; flex-direction: column; justify-content: center;
-}
-.hero-photo { aspect-ratio: auto; min-height: 480px; }
 .eyebrow { color: var(--brass); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; margin-bottom: 20px; }
 .hero h1 { font-size: clamp(2rem, 3.6vw, 2.9rem); margin-bottom: 22px; }
 .hero-sub { font-size: 1.05rem; color: var(--text-soft); max-width: 480px; margin: 0 0 36px; }
 .hero-actions { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
-.seal-lg { margin: 0 0 28px; }
 
 /* ===== About ===== */
 .about-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: start; }
@@ -382,9 +413,6 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
 @media (max-width: 900px) {
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .service-list { grid-template-columns: 1fr; }
-  .hero-split { grid-template-columns: 1fr; }
-  .hero-frame { border-right: 1px solid var(--border); }
-  .hero-photo { min-height: 320px; order: -1; }
   .about-photo { aspect-ratio: 16/9; }
 }
 @media (max-width: 760px) {
@@ -392,7 +420,7 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
   .nav-toggle { display: flex; }
   .form-row { grid-template-columns: 1fr; }
   .section { padding: 68px 0; }
-  .hero { padding: 48px 0 72px; }
+  .hero { min-height: 480px; }
   .pricing-card { border-right: none; border-bottom: 1px solid var(--border); }
   .pricing-card:last-child { border-bottom: none; }
 }
