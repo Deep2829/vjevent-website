@@ -358,8 +358,12 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
   background: var(--paper);
   border: 1px solid var(--border);
   box-shadow: 0 12px 32px rgba(27, 29, 23, 0.18);
-  display: flex; flex-direction: column;
 }
+/* Setting display only when NOT hidden lets the hidden attribute's
+   built-in display:none actually take effect — an unconditional
+   `display: flex` here would always outrank it and the panel could
+   never be closed. */
+.chat-panel:not([hidden]) { display: flex; flex-direction: column; }
 .chat-header { display: flex; align-items: center; gap: 12px; padding: 16px 16px 14px; border-bottom: 1px solid var(--border); }
 .chat-header-text { flex-grow: 1; }
 .chat-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.15rem; }
