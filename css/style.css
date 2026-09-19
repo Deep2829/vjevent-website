@@ -144,7 +144,7 @@ h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
   display: flex; align-items: center; justify-content: space-between;
   height: 84px;
 }
-.brand { display: flex; align-items: center; gap: 12px; margin-left: -10px; }
+.brand { display: flex; align-items: center; gap: 12px; margin-left: -24px; }
 .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.02em; }
 .nav-desktop { display: flex; align-items: center; gap: 34px; }
 .nav-desktop a:not(.btn) {
