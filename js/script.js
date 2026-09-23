@@ -11,33 +11,6 @@ navMobile.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navMobile.classList.remove('open'));
 });
 
-// Hero video depth effect — as the About section (curtain) pulls up over the
-// sticky hero, the video subtly shrinks and dims so it reads as receding
-// behind the page rather than just sitting under a flat, static cover.
-(() => {
-  const heroVideo = document.querySelector('.hero-video');
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!heroVideo || prefersReducedMotion) return;
-
-  let ticking = false;
-  function updateHeroDepth() {
-    const vh = window.innerHeight || 1;
-    const progress = Math.min(Math.max(window.scrollY / vh, 0), 1);
-    const scale = 1 - progress * 0.08;
-    const brightness = 1 - progress * 0.25;
-    heroVideo.style.transform = `scale(${scale})`;
-    heroVideo.style.filter = `brightness(${brightness})`;
-    ticking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeroDepth);
-      ticking = true;
-    }
-  }, { passive: true });
-  updateHeroDepth();
-})();
-
 // Header background once the page has scrolled past the hero frame
 const header = document.getElementById('siteHeader');
 const setHeaderState = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
@@ -294,4 +267,26 @@ form.addEventListener('submit', (e) => {
 
   formError.hidden = true;
   formNote.textContent = "Thanks! This form isn't connected to email/storage yet — see the setup note in js/script.js.";
+});
+
+// Appointment form — same client-side-only validation pattern as Contact
+const appointmentForm = document.getElementById('appointmentForm');
+const appointmentError = document.getElementById('appointmentError');
+const appointmentNote = document.getElementById('appointmentNote');
+
+appointmentForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = appointmentForm.elements.name.value.trim();
+  const phone = appointmentForm.elements.phone.value.trim();
+  const date = appointmentForm.elements.date.value;
+
+  if (!name || !phone || !date) {
+    appointmentError.textContent = 'Please add your name, phone number and a preferred date.';
+    appointmentError.hidden = false;
+    appointmentNote.textContent = '';
+    return;
+  }
+
+  appointmentError.hidden = true;
+  appointmentNote.textContent = "Thanks! This form isn't connected to email/storage yet — see the setup note in js/script.js.";
 });
